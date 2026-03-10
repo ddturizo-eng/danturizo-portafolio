@@ -266,40 +266,31 @@ const Skills = () => {
         </motion.div>
       </div>
 
-      {/* Animated Particles */}
-      {[...Array(20)].map((_, i) => {
-        const positions = [
-          { top: 15, left: 25 }, { top: 85, left: 75 }, { top: 45, left: 60 },
-          { top: 70, left: 20 }, { top: 30, left: 80 }, { top: 55, left: 35 },
-          { top: 10, left: 65 }, { top: 90, left: 45 }, { top: 25, left: 50 },
-          { top: 65, left: 15 }, { top: 40, left: 90 }, { top: 80, left: 55 },
-          { top: 20, left: 40 }, { top: 75, left: 70 }, { top: 50, left: 30 },
-          { top: 35, left: 85 }, { top: 60, left: 10 }, { top: 5, left: 55 },
-          { top: 95, left: 25 }, { top: 12, left: 95 }
-        ];
-        const pos = positions[i];
-        
-        return (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full"
-            style={{
-              top: `${pos.top}%`,
-              left: `${pos.left}%`,
-            }}
-            animate={{
-              y: [0, -50, 0],
-              opacity: [0.1, 0.4, 0.1],
-              scale: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: 3 + (i % 3),
-              repeat: Infinity,
-              delay: i * 0.3,
-            }}
-          />
-        );
-      })}
+      {/* Reduced Animated Particles - only 8 instead of 20 */}
+      {[
+        { top: 15, left: 25 }, { top: 85, left: 75 }, { top: 45, left: 60 },
+        { top: 70, left: 20 }, { top: 30, left: 80 }, { top: 55, left: 35 },
+        { top: 10, left: 65 }, { top: 90, left: 45 },
+      ].map((pos, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 bg-white/20 rounded-full"
+          style={{
+            top: `${pos.top}%`,
+            left: `${pos.left}%`,
+          }}
+          animate={{
+            y: [0, -50, 0],
+            opacity: [0.1, 0.4, 0.1],
+            scale: [1, 1.5, 1],
+          }}
+          transition={{
+            duration: 3 + (i % 3),
+            repeat: Infinity,
+            delay: i * 0.3,
+          }}
+        />
+      ))}
     </section>
   );
 };

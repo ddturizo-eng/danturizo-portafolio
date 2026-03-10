@@ -1,18 +1,7 @@
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Video, 
-  Edit3, 
-  Image, 
-  ArrowLeftRight, 
-  Zap, 
-  Code2, 
-  Search, 
-  Sparkles, 
-  Flag, 
-  Monitor,
-} from 'lucide-react';
+import { Video, Edit3, Image, ArrowLeftRight, Zap, Code2, Search, Sparkles } from 'lucide-react';
 
 const Tags = () => {
   // Primera fila de tags
@@ -21,8 +10,6 @@ const Tags = () => {
     { name: 'Copywriting', icon: Edit3 },
     { name: 'Posters', icon: Image },
     { name: 'Framer Migration', icon: ArrowLeftRight },
-    { name: 'Video & Motion Graphics', icon: Video },
-    { name: 'Copywriting', icon: Edit3 },
   ];
 
   // Segunda fila de tags
@@ -31,9 +18,6 @@ const Tags = () => {
     { name: 'Custom Code', icon: Code2 },
     { name: 'SEO', icon: Search },
     { name: 'Icons', icon: Sparkles },
-    { name: 'Social Media', icon: Flag },
-    { name: 'Landing Pages', icon: Monitor },
-    { name: 'Web Design', icon: Monitor },
   ];
 
   return (
@@ -50,7 +34,7 @@ const Tags = () => {
             }}
             className="flex gap-4 whitespace-nowrap"
           >
-            {[...topTags, ...topTags, ...topTags].map((tag, idx) => {
+            {[...topTags, ...topTags].map((tag, idx) => {
               const Icon = tag.icon;
               return (
                 <div
@@ -76,7 +60,7 @@ const Tags = () => {
             }}
             className="flex gap-4 whitespace-nowrap"
           >
-            {[...bottomTags, ...bottomTags, ...bottomTags].map((tag, idx) => {
+            {[...bottomTags, ...bottomTags].map((tag, idx) => {
               const Icon = tag.icon;
               return (
                 <div

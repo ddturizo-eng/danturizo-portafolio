@@ -168,11 +168,12 @@ const Services = () => {
                         alt={`Full Stack Project ${idx + 1}`}
                         fill
                         sizes="(max-width: 768px) 280px, 300px"
-                        className="object-cover pointer-events-none" // Previene drag en la imagen
-                        quality={90}
+                        className="object-cover pointer-events-none"
+                        quality={75}
                         loading={idx === 0 ? 'eager' : 'lazy'}
-                        onError={(e) => {
-                          // Fallback en caso de error
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgEDAwUBAAAAAAAAAAAAAQIDAAQRBRIhBgcTFCIx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQACAwEAAAAAAAAAAAAAAAABAgADESH/2gAMAwEAAhEDEEA/AOn5XltGkttIu7aKGGRI5EkkQMwDqGBBI9HXR/2Wu7iy0a2lsru4tpmvrdS9vM0TFTLGCpKkHBBIx+DrzP2+7gt9F2lu7U5VDR2dvDclT4JWKdGI/evQfb7eWm742ptvcGm3Mdxb3FrbyxvGwIZXiQg/o0dYlK1L4q6V//2Q=="
+                        onError={() => {
                           console.error(`Error loading image: ${img}`);
                         }}
                       />

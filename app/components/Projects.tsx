@@ -117,7 +117,9 @@ const Projects = () => {
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 58vw, 58vw"
                 className="object-cover"
-                priority
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgEDAwUBAAAAAAAAAAAAAQIDAAQRBRIhBgcTFCIx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQACAwEAAAAAAAAAAAAAAAABAgADESH/2gAMAwEAAhEDEEA/AOn5XltGkttIu7aKGGRI5EkkQMwDqGBBI9HXR/2Wu7iy0a2lsru4tpmvrdS9vM0TFTLGCpKkHBBIx+DrzP2+7gt9F2lu7U5VDR2dvDclT4JWKdGI/evQfb7eWm742ptvcGm3Mdxb3FrbyxvGwIZXiQg/o0dYlK1L4q6V//2Q=="
               />
               
               {/* Overlay con información */}
@@ -162,6 +164,9 @@ const Projects = () => {
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 42vw, 42vw"
                 className="object-cover"
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgEDAwUBAAAAAAAAAAAAAQIDAAQRBRIhBgcTFCIx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQACAwEAAAAAAAAAAAAAAAABAgADESH/2gAMAwEAAhEDEEA/AOn5XltGkttIu7aKGGRI5EkkQMwDqGBBI9HXR/2Wu7iy0a2lsru4tpmvrdS9vM0TFTLGCpKkHBBIx+DrzP2+7gt9F2lu7U5VDR2dvDclT4JWKdGI/evQfb7eWm742ptvcGm3Mdxb3FrbyxvGwIZXiQg/o0dYlK1L4q6V//2Q=="
               />
               
               {/* Overlay */}
@@ -205,6 +210,9 @@ const Projects = () => {
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 42vw, 42vw"
                 className="object-cover"
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgEDAwUBAAAAAAAAAAAAAQIDAAQRBRIhBgcTFCIx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQACAwEAAAAAAAAAAAAAAAABAgADESH/2gAMAwEAAhEDEEA/AOn5XltGkttIu7aKGGRI5EkkQMwDqGBBI9HXR/2Wu7iy0a2lsru4tpmvrdS9vM0TFTLGCpKkHBBIx+DrzP2+7gt9F2lu7U5VDR2dvDclT4JWKdGI/evQfb7eWm742ptvcGm3Mdxb3FrbyxvGwIZXiQg/o0dYlK1L4q6V//2Q=="
               />
               
               {/* Overlay */}
@@ -248,6 +256,9 @@ const Projects = () => {
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 58vw, 58vw"
                 className="object-cover"
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgEDAwUBAAAAAAAAAAAAAQIDAAQRBRIhBgcTFCIx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQACAwEAAAAAAAAAAAAAAAABAgADESH/2gAMAwEAAhEDEEA/AOn5XltGkttIu7aKGGRI5EkkQMwDqGBBI9HXR/2Wu7iy0a2lsru4tpmvrdS9vM0TFTLGCpKkHBBIx+DrzP2+7gt9F2lu7U5VDR2dvDclT4JWKdGI/evQfb7eWm742ptvcGm3Mdxb3FrbyxvGwIZXiQg/o0dYlK1L4q6V//2Q=="
               />
               
               {/* Badge Featured */}

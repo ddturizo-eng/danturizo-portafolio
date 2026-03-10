@@ -75,6 +75,10 @@ const About = () => {
                   alt="Dan Turizo Profile"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgEDAwUBAAAAAAAAAAAAAQIDAAQRBRIhBgcTFCIx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQACAwEAAAAAAAAAAAAAAAABAgADESH/2gAMAwEAAhEDEEA/AOn5XltGkttIu7aKGGRI5EkkQMwDqGBBI9HXR/2Wu7iy0a2lsru4tpmvrdS9vM0TFTLGCpKkHBBIx+DrzP2+7gt9F2lu7U5VDR2dvDclT4JWKdGI/evQfb7eWm742ptvcGm3Mdxb3FrbyxvGwIZXiQg/o0dYlK1L4q6V//2Q=="
                 />
                 {/* Available Badge */}
                 <div className="absolute bottom-6 left-6 flex items-center gap-2 bg-black/60 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-full">

@@ -1,30 +1,29 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useSyncExternalStore } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 
+function useHydrated() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+}
+
 const Hero = () => {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHydrated();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Valores fijos para shooting stars
+  // Reduced shooting stars for mobile performance
   const shootingStars = [
     { topStart: 15, leftStart: 20, topEnd: 115, leftEnd: 70 },
     { topStart: 35, leftStart: 60, topEnd: 135, leftEnd: 110 },
     { topStart: 10, leftStart: 80, topEnd: 110, leftEnd: 130 },
-    { topStart: 45, leftStart: 30, topEnd: 145, leftEnd: 80 },
-    { topStart: 5, leftStart: 50, topEnd: 105, leftEnd: 100 },
-    { topStart: 25, leftStart: 90, topEnd: 125, leftEnd: 140 },
-    { topStart: 40, leftStart: 10, topEnd: 140, leftEnd: 60 },
-    { topStart: 20, leftStart: 70, topEnd: 120, leftEnd: 120 }
   ];
 
-  // Valores fijos para particles
+  // Reduced particles for mobile - reduced from 15 to 6
   const particles = [
     { top: 20, left: 30 },
     { top: 60, left: 70 },
@@ -32,15 +31,6 @@ const Hero = () => {
     { top: 75, left: 20 },
     { top: 40, left: 50 },
     { top: 90, left: 60 },
-    { top: 25, left: 15 },
-    { top: 55, left: 90 },
-    { top: 10, left: 45 },
-    { top: 80, left: 35 },
-    { top: 35, left: 75 },
-    { top: 70, left: 10 },
-    { top: 50, left: 55 },
-    { top: 85, left: 80 },
-    { top: 30, left: 65 }
   ];
 
   return (
