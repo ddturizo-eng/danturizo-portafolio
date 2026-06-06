@@ -17,7 +17,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="min-h-screen py-20 px-6 relative overflow-hidden bg-black"
+      className="min-h-screen py-20 px-6 relative overflow-hidden bg-black will-change-transform will-change-opacity"
     >
       <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/3 left-1/4 w-[400px] h-[400px] bg-gray-800/20 rounded-full blur-3xl pointer-events-none" />
@@ -26,9 +26,9 @@ export function About() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+           viewport={{ once: true, margin: '-50px' }}
+           transition={{ duration: 0.6 }}
+           className="mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             About Me
@@ -40,7 +40,7 @@ export function About() {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 sticky top-24">
@@ -109,8 +109,8 @@ export function About() {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+               viewport={{ once: true, margin: '-50px' }}
+               transition={{ duration: 0.6, delay: 0.3 }}
               className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8"
             >
               <h3 className="text-2xl font-bold text-white mb-4">Who I Am</h3>
@@ -136,8 +136,8 @@ export function About() {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+               viewport={{ once: true, margin: '-50px' }}
+               transition={{ duration: 0.6, delay: 0.4 }}
               className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8"
             >
               <h3 className="text-2xl font-bold text-white mb-6">
@@ -149,7 +149,7 @@ export function About() {
                     key={skill}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: '-50px' }}
                     transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
                     whileHover={{ scale: 1.05, y: -2 }}
                     className="bg-white/5 backdrop-blur-xl border border-white/10 px-5 py-3 rounded-full text-gray-300 font-medium hover:bg-white/10 hover:text-white transition-all cursor-default"
@@ -163,8 +163,8 @@ export function About() {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+               viewport={{ once: true, margin: '-50px' }}
+               transition={{ duration: 0.6, delay: 0.5 }}
               className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8"
             >
               <h3 className="text-2xl font-bold text-white mb-6">
@@ -176,7 +176,7 @@ export function About() {
                     key={index}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: '-50px' }}
                     transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
                     className="flex items-start justify-between gap-4 pb-6 border-b border-white/10 last:border-0 last:pb-0"
                   >

@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer
       id="contact"
-      className="py-20 md:py-32 px-4 md:px-6 relative overflow-hidden bg-black"
+      className="py-20 md:py-32 px-4 md:px-6 relative overflow-hidden bg-black will-change-transform will-change-opacity"
     >
       <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent pointer-events-none" />
 
@@ -24,7 +24,7 @@ export function Footer() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-50px' }}
           className="text-center mb-16 md:mb-20"
         >
           <span className="text-xs md:text-sm font-medium text-gray-400 uppercase tracking-wider">

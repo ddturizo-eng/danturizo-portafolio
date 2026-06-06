@@ -11,7 +11,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="py-12 md:py-20 px-4 md:px-6 relative overflow-hidden bg-black"
+      className="py-12 md:py-20 px-4 md:px-6 relative overflow-hidden bg-black will-change-transform will-change-opacity"
     >
       <div className="absolute top-1/4 left-1/3 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-white/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/3 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-gray-800/20 rounded-full blur-3xl pointer-events-none" />
@@ -21,7 +21,7 @@ export function Services() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
@@ -37,7 +37,7 @@ export function Services() {
             href="#contact"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -55,7 +55,7 @@ export function Services() {
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, delay: 0.1 + idx * 0.1 }}
                 className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 group hover:bg-black/50 transition-all"
               >
@@ -88,7 +88,7 @@ export function Services() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 md:mt-16 text-center"
         >

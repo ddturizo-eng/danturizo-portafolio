@@ -21,7 +21,7 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="min-h-screen py-20 px-6 bg-black relative overflow-hidden"
+      className="min-h-screen py-20 px-6 bg-black relative overflow-hidden will-change-transform will-change-opacity"
     >
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-[120px] pointer-events-none" />
@@ -39,7 +39,7 @@ export function Skills() {
               key={idx}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               className="group relative"
             >
@@ -59,7 +59,7 @@ export function Skills() {
                       key={techIdx}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, margin: '-50px' }}
                       transition={{
                         duration: 0.4,
                         delay: idx * 0.1 + techIdx * 0.05,
@@ -85,7 +85,7 @@ export function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.8 }}
           className="relative bg-white/[0.03] backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden mb-8"
         >
@@ -104,7 +104,7 @@ export function Skills() {
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: idx * 0.15 }}
                 className="p-8 group hover:bg-white/[0.02] transition-all duration-300 relative"
               >
@@ -126,7 +126,7 @@ export function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.8 }}
           className="relative bg-white/[0.03] backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden"
         >

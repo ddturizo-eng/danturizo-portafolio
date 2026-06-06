@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
@@ -8,12 +9,13 @@ import { useReducedMotion } from '@/hooks';
 
 export function Projects() {
   const prefersReducedMotion = useReducedMotion();
+  const [activeId, setActiveId] = useState<number | null>(null);
   const [featured, ...rest] = PROJECTS;
 
   return (
     <section
       id="projects"
-      className="py-32 px-6 relative overflow-hidden"
+      className="py-32 px-6 relative overflow-hidden will-change-transform will-change-opacity"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black pointer-events-none" />
       <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none" />
@@ -23,7 +25,7 @@ export function Projects() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-50px' }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-6">
@@ -59,10 +61,14 @@ export function Projects() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-50px' }}
           className="mb-8"
         >
-          <div className="relative h-[400px] lg:h-[500px] bg-black/40 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden cursor-pointer group">
+          <div
+            className={`relative h-[400px] lg:h-[500px] bg-black/40 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden cursor-pointer group ${activeId === featured.id ? 'is-active' : ''}`}
+            onClick={() => setActiveId(activeId === featured.id ? null : featured.id)}
+            onMouseLeave={() => setActiveId(null)}
+          >
             <Image
               src={featured.image}
               alt={featured.title}
@@ -77,7 +83,7 @@ export function Projects() {
                 ★ Featured Project
               </span>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity duration-300">
               <div className="absolute bottom-0 left-0 right-0 p-10">
                 <span className="text-gray-400 text-sm mb-2 block">
                   {featured.category}
@@ -101,7 +107,7 @@ export function Projects() {
               </div>
             </div>
             <motion.div
-              className="absolute top-6 right-6 w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute top-6 right-6 w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity"
               whileHover={{ scale: 1.1 }}
             >
               <ArrowUpRight className="w-6 h-6 text-white" />
@@ -120,10 +126,14 @@ export function Projects() {
                 ease: 'easeOut',
                 delay: idx * 0.1,
               }}
-              viewport={{ once: true }}
-              className="group"
+              viewport={{ once: true, margin: '-50px' }}
+              className={`group ${activeId === project.id ? 'is-active' : ''}`}
             >
-              <div className="relative h-[350px] bg-black/40 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
+              <div
+                className="relative h-[350px] bg-black/40 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden cursor-pointer"
+                onClick={() => setActiveId(activeId === project.id ? null : project.id)}
+                onMouseLeave={() => setActiveId(null)}
+              >
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -133,7 +143,7 @@ export function Projects() {
                   loading="lazy"
                   placeholder="blur"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-8">
                     <span className="text-gray-400 text-sm mb-2 block">
                       {project.category}
@@ -157,7 +167,7 @@ export function Projects() {
                   </div>
                 </div>
                 <motion.div
-                  className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity"
                   whileHover={{ scale: 1.1 }}
                 >
                   <ArrowUpRight className="w-6 h-6 text-white" />
@@ -171,11 +181,11 @@ export function Projects() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-50px' }}
           className="mt-12 text-center"
         >
           <p className="text-gray-500 text-sm">
-            Hover over projects to see details
+            Tap on projects to see details
           </p>
         </motion.div>
       </div>
