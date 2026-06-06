@@ -31,7 +31,7 @@ export function Hero() {
     >
       <div className="absolute inset-0 z-0">
         <Image
-          src="/img/heroback.jpg"
+          src="/img/heroback.avif"
           alt="Hero Background"
           fill
           className="object-cover opacity-30"
