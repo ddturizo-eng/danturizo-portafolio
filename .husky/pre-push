@@ -1,0 +1,10 @@
+echo "🔍 Verificando consistencia de imágenes (case-sensitivity)..."
+node scripts/check-image-case.js
+
+if [ $? -ne 0 ]; then
+  echo "❌ Push bloqueado: hay errores de case-sensitivity en imágenes."
+  echo "   Corrige los nombres antes de hacer push."
+  exit 1
+fi
+
+echo "✅ Imágenes OK. Push permitido."

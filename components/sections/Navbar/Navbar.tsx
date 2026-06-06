@@ -1,27 +1,55 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll, AnimatePresence } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
+import { useScrollPosition, useBodyLock } from '@/hooks';
+import { NAV_ITEMS } from '@/data';
 
-const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
+export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { scrollY } = useScroll();
+  const menuRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const scrolled = useScrollPosition(50);
+
+  useBodyLock(mobileMenuOpen);
 
   useEffect(() => {
-    return scrollY.onChange((latest) => {
-      setScrolled(latest > 50);
-    });
-  }, [scrollY]);
+    if (!mobileMenuOpen) return;
 
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    const menu = menuRef.current;
+    if (!menu) return;
+
+    const closeButton = menu.querySelector<HTMLButtonElement>('[aria-label="Close menu"]');
+    closeButton?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      const focusable = menu.querySelectorAll<HTMLElement>(
+        'a, button, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    const toggleEl = toggleRef.current;
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      toggleEl?.focus();
+    };
   }, [mobileMenuOpen]);
 
   return (
@@ -33,35 +61,41 @@ const Navbar = () => {
           scrolled ? 'w-[95%] max-w-7xl' : 'w-[90%] max-w-6xl'
         }`}
       >
-        <div className={`bg-black/40 backdrop-blur-xl border border-white/10 rounded-full px-6 py-4 transition-all duration-300 ${
-          scrolled ? 'shadow-2xl shadow-black/50' : ''
-        }`}>
+        <div
+          className={`bg-black/40 backdrop-blur-xl border border-white/10 rounded-full px-6 py-4 transition-all duration-300 ${
+            scrolled ? 'shadow-2xl shadow-black/50' : ''
+          }`}
+        >
           <div className="flex items-center justify-between">
-            {/* Logo - Imagen circular + texto */}
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 overflow-hidden flex items-center justify-center">
-                {/* Logo imagen */}
-                <Image 
-                  src="/img/Logonav.png" 
-                  alt="Dan Turizo Logo" 
-                  width={40} 
+                <Image
+                  src="/img/Logonav.png"
+                  alt="Dan Turizo Logo"
+                  width={40}
                   height={40}
                   className="w-full h-full object-cover"
                 />
               </div>
               <span className="text-white font-semibold text-lg">Dan Turizo</span>
             </div>
-            
-            {/* Menu Desktop */}
+
             <div className="hidden md:flex items-center gap-8 text-sm">
-              <a href="#about" className="text-gray-300 hover:text-white transition-colors">About</a>
-              <a href="#skills" className="text-gray-300 hover:text-white transition-colors">Skills</a>
-              <a href="#projects" className="text-gray-300 hover:text-white transition-colors">Projects</a>
-              <a href="#services" className="text-gray-300 hover:text-white transition-colors">Services</a>
+              {NAV_ITEMS.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
 
-            {/* CTA Button Desktop */}
-            <a href="#contact" className="hidden md:block">
+            <a
+              href="#contact"
+              className="hidden md:block"
+            >
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -71,10 +105,12 @@ const Navbar = () => {
               </motion.button>
             </a>
 
-            {/* Hamburger Menu Button Mobile */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden text-white p-2"
+              ref={toggleRef}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -82,11 +118,9 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -95,43 +129,44 @@ const Navbar = () => {
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
             />
 
-            {/* Menu Panel - 50% width */}
             <motion.div
+              ref={menuRef}
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
               className="fixed top-0 right-0 w-1/2 h-full bg-black/95 backdrop-blur-xl border-l border-white/10 z-50 md:hidden"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
             >
               <div className="flex flex-col h-full p-8">
-                {/* Close Button */}
                 <div className="flex justify-end mb-12">
                   <button
                     onClick={() => setMobileMenuOpen(false)}
                     className="text-white p-2 hover:bg-white/10 rounded-full transition-colors"
+                    aria-label="Close menu"
                   >
                     <X size={24} />
                   </button>
                 </div>
 
-                {/* Menu Items */}
                 <nav className="flex flex-col gap-6 mb-12">
-                  {['About', 'Skills', 'Projects', 'Services'].map((item, idx) => (
+                  {NAV_ITEMS.map((item, idx) => (
                     <motion.a
-                      key={item}
-                      href={`#${item.toLowerCase()}`}
+                      key={item.href}
+                      href={item.href}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.1 }}
                       onClick={() => setMobileMenuOpen(false)}
                       className="text-white text-2xl font-medium hover:text-gray-300 transition-colors"
                     >
-                      {item}
+                      {item.label}
                     </motion.a>
                   ))}
                 </nav>
 
-                {/* CTA Button */}
                 <motion.a
                   href="#contact"
                   initial={{ opacity: 0, y: 20 }}
@@ -151,6 +186,4 @@ const Navbar = () => {
       </AnimatePresence>
     </>
   );
-};
-
-export default Navbar;
+}
