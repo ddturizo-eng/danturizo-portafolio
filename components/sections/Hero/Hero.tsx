@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import { useHydrated, useReducedMotion } from '@/hooks';
+import heroImg from '@/public/img/heroback.jpg';
 
 const shootingStars = [
   { topStart: 15, leftStart: 20, topEnd: 115, leftEnd: 70 },
@@ -31,7 +32,7 @@ export function Hero() {
     >
       <div className="absolute inset-0 z-0">
         <Image
-          src="/img/heroback.jpg"
+          src={heroImg}
           alt="Hero Background"
           fill
           className="object-cover opacity-30"
