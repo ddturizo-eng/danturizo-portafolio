@@ -1,13 +1,14 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from "next";
+import { siteConfig } from "@/lib/metadata";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://danturizo.vercel.app';
+  const baseUrl = siteConfig.url;
 
   return [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "weekly",
       priority: 1,
     },
   ];

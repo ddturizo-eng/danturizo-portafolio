@@ -1,0 +1,10 @@
+{
+  "name": "Daniel Turizo — Portafolio",
+  "short_name": "Daniel Turizo",
+  "description": "Full Stack Developer. Backend, bases de datos y arquitectura de software.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0a0a",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
