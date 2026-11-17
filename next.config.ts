@@ -1,18 +1,34 @@
 import type { NextConfig } from "next";
 
+const r2Origin = process.env.R2_PUBLIC_BASE_URL
+  ? new URL(process.env.R2_PUBLIC_BASE_URL)
+  : null;
+
 const nextConfig: NextConfig = {
+  productionBrowserSourceMaps: false,
   images: {
-    formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60 * 60 * 24 * 30,
-    dangerouslyAllowSVG: false,
+    remotePatterns: [
+      ...(r2Origin
+        ? [
+            {
+              protocol: "https" as const,
+              hostname: r2Origin.hostname,
+              port: "",
+              pathname: "/projects/**",
+              search: "",
+            },
+          ]
+        : []),
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.dribbble.com",
+      },
+    ],
   },
-  experimental: {
-    optimizePackageImports: ['framer-motion', 'lucide-react'],
-  },
-  compress: true,
-  poweredByHeader: false,
 };
 
 export default nextConfig;

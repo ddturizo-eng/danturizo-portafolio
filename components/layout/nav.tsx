@@ -1,0 +1,208 @@
+"use client";
+
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type ReactNode,
+} from "react";
+
+type NavItem = {
+  label: string;
+  href: string;
+};
+
+const NAV_ITEMS: readonly NavItem[] = [
+  { label: "Inicio", href: "/" },
+  { label: "Proyectos", href: "/projects" },
+  { label: "Sobre mí", href: "/about" },
+];
+
+function useIsMounted(): boolean {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+}
+
+function NavThemeToggle(): ReactNode {
+  const mounted = useIsMounted();
+  const { setTheme, resolvedTheme } = useTheme();
+  const isDark = mounted && resolvedTheme === "dark";
+
+  const toggleTheme = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    const next = isDark ? "light" : "dark";
+
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const supportsViewTransitions =
+      typeof document !== "undefined" &&
+      typeof document.startViewTransition === "function";
+
+    if (!supportsViewTransitions || prefersReducedMotion) {
+      setTheme(next);
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const radius = Math.hypot(
+      Math.max(cx, window.innerWidth - cx),
+      Math.max(cy, window.innerHeight - cy)
+    );
+
+    const root = document.documentElement;
+    root.style.setProperty("--theme-cx", `${cx}px`);
+    root.style.setProperty("--theme-cy", `${cy}px`);
+    root.style.setProperty("--theme-r", `${radius}px`);
+    root.dataset.themeAnim = "1";
+
+    const transition = document.startViewTransition(() => {
+      setTheme(next);
+    });
+
+    transition.finished.finally(() => {
+      delete root.dataset.themeAnim;
+    });
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      aria-label={
+        mounted
+          ? isDark
+            ? "Cambiar a tema claro"
+            : "Cambiar a tema oscuro"
+          : "Cambiar tema"
+      }
+      aria-pressed={mounted ? isDark : undefined}
+      className="focus-ring bg-background ring-foreground/8 relative inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full ring-1 transition-colors"
+    >
+      <span aria-hidden="true" className="relative h-4 w-4">
+        <Sun
+          className={`text-foreground absolute inset-0 h-4 w-4 transition-all duration-300 ${
+            mounted && isDark
+              ? "scale-100 rotate-0 opacity-100"
+              : "scale-0 -rotate-90 opacity-0"
+          }`}
+        />
+        <Moon
+          className={`text-foreground absolute inset-0 h-4 w-4 transition-all duration-300 ${
+            mounted && !isDark
+              ? "scale-100 rotate-0 opacity-100"
+              : "scale-0 rotate-90 opacity-0"
+          }`}
+        />
+      </span>
+    </button>
+  );
+}
+
+export function Nav(): ReactNode {
+  const pathname = usePathname();
+  const listRef = useRef<HTMLUListElement>(null);
+  const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
+  const [pillRect, setPillRect] = useState<{
+    x: number;
+    width: number;
+  } | null>(null);
+  const [hasMeasured, setHasMeasured] = useState(false);
+
+  const activeIndex = NAV_ITEMS.findIndex((item) =>
+    item.href === "/"
+      ? pathname === "/"
+      : pathname === item.href || pathname.startsWith(`${item.href}/`)
+  );
+
+  useLayoutEffect(() => {
+    const list = listRef.current;
+    const activeEl = activeIndex >= 0 ? itemRefs.current[activeIndex] : null;
+    if (!list || !activeEl) {
+      setPillRect(null);
+      return;
+    }
+    const listRect = list.getBoundingClientRect();
+    const itemRect = activeEl.getBoundingClientRect();
+    setPillRect({
+      x: itemRect.left - listRect.left,
+      width: itemRect.width,
+    });
+  }, [activeIndex, pathname]);
+
+  useEffect(() => {
+    if (!pillRect) return;
+    const id = requestAnimationFrame(() => setHasMeasured(true));
+    return () => cancelAnimationFrame(id);
+  }, [pillRect]);
+
+  return (
+    <nav
+      aria-label="Principal"
+      className="fixed top-6 left-1/2 z-50 w-max -translate-x-1/2"
+    >
+      <div className="bg-background border-foreground/8 flex items-center gap-1 rounded-full border p-1.5 shadow-sm">
+        <ul ref={listRef} className="relative flex items-center gap-1">
+          {pillRect && (
+            // CSS transition instead of a spring: keeps motion out of the
+            // bundle every page loads. Reduced motion is handled globally.
+            <span
+              aria-hidden="true"
+              style={{
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: pillRect.width,
+                transform: `translateX(${pillRect.x}px)`,
+                transition: hasMeasured
+                  ? "transform 450ms var(--ease-out), width 450ms var(--ease-out)"
+                  : "none",
+              }}
+              className="bg-foreground/5 ring-foreground/8 absolute rounded-full ring-1"
+            />
+          )}
+          {NAV_ITEMS.map((item, index) => {
+            const isActive = index === activeIndex;
+            return (
+              <li
+                key={item.href}
+                ref={(el) => {
+                  itemRefs.current[index] = el;
+                }}
+                className="relative"
+              >
+                <Link
+                  href={item.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className="focus-ring relative inline-flex min-h-11 cursor-pointer items-center justify-center rounded-full px-3.5 py-1.5 text-sm font-medium whitespace-nowrap transition-colors duration-300 sm:px-4"
+                >
+                  <span
+                    className={
+                      isActive
+                        ? "text-foreground relative z-10"
+                        : "text-foreground/60 hover:text-foreground relative z-10"
+                    }
+                  >
+                    {item.label}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <NavThemeToggle />
+      </div>
+    </nav>
+  );
+}

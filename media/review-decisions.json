@@ -1,0 +1,257 @@
+[
+  {
+    "id": "abis-upc-image-01",
+    "source": "media/source/abis-upc/Captura de pantalla 2026-05-29 104536.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "abis-upc-image-01"
+    ]
+  },
+  {
+    "id": "abis-upc-image-02",
+    "source": "media/source/abis-upc/Captura de pantalla 2026-05-29 104649.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "abis-upc-image-02"
+    ]
+  },
+  {
+    "id": "abis-upc-image-03",
+    "source": "media/source/abis-upc/Captura de pantalla 2026-05-29 104954.png",
+    "decision": "withheld",
+    "reason": "Panel redundante respecto de gestión electoral; no aporta un flujo distinto a la selección.",
+    "derivedAssets": []
+  },
+  {
+    "id": "abis-upc-image-04",
+    "source": "media/source/abis-upc/Captura de pantalla 2026-05-29 105014.png",
+    "decision": "withheld",
+    "reason": "Papeleta con nombres y fotografías identificables; requiere revisión y autorización.",
+    "derivedAssets": []
+  },
+  {
+    "id": "averyn-video-01",
+    "source": "media/source/averyn/landingsitemp4.mp4",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "averyn-video-01-t9.1",
+      "averyn-video-01-t18.1",
+      "averyn-video-01-t30.2",
+      "averyn-video-01"
+    ]
+  },
+  {
+    "id": "averyn-video-02",
+    "source": "media/source/averyn/WhatsApp Video 2026-11-17 at 10.34.07.mp4",
+    "decision": "withheld",
+    "reason": "Captura facial de una persona identificable; retener hasta anonimización o autorización específica.",
+    "derivedAssets": []
+  },
+  {
+    "id": "glow-makeup-image-01",
+    "source": "media/source/glow-makeup/Captura de pantalla 2026-11-17 083029.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "glow-makeup-image-01"
+    ]
+  },
+  {
+    "id": "glow-makeup-image-02",
+    "source": "media/source/glow-makeup/Captura de pantalla 2026-11-17 083158.png",
+    "decision": "withheld",
+    "reason": "Galería visualmente redundante; se eligen composición editorial y móvil.",
+    "derivedAssets": []
+  },
+  {
+    "id": "glow-makeup-image-03",
+    "source": "media/source/glow-makeup/Captura de pantalla 2026-11-17 083224.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "glow-makeup-image-03"
+    ]
+  },
+  {
+    "id": "glow-makeup-image-04",
+    "source": "media/source/glow-makeup/Captura de pantalla 2026-11-17 083338.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "glow-makeup-image-04"
+    ]
+  },
+  {
+    "id": "hc-efectos-image-01",
+    "source": "media/source/hc-efectos/Captura de pantalla 2026-11-17 085534.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "hc-efectos-image-01"
+    ]
+  },
+  {
+    "id": "hc-efectos-image-02",
+    "source": "media/source/hc-efectos/Captura de pantalla 2026-11-17 085546.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "hc-efectos-image-02"
+    ]
+  },
+  {
+    "id": "hc-efectos-image-03",
+    "source": "media/source/hc-efectos/Captura de pantalla 2026-11-17 085602.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "hc-efectos-image-03"
+    ]
+  },
+  {
+    "id": "hc-efectos-image-04",
+    "source": "media/source/hc-efectos/Captura de pantalla 2026-11-17 085622.png",
+    "decision": "withheld",
+    "reason": "Contenido redundante de eventos; se prioriza hero, consulta y galería.",
+    "derivedAssets": []
+  },
+  {
+    "id": "hc-efectos-image-05",
+    "source": "media/source/hc-efectos/Captura de pantalla 2026-11-17 085632.png",
+    "decision": "withheld",
+    "reason": "Red social y contenido de eventos redundante; no necesario para el caso.",
+    "derivedAssets": []
+  },
+  {
+    "id": "norelo-image-01",
+    "source": "media/source/Norelo/Captura de pantalla 2026-11-17 104934.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "norelo-image-01"
+    ]
+  },
+  {
+    "id": "norelo-image-02",
+    "source": "media/source/Norelo/Captura de pantalla 2026-11-17 104942.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "norelo-image-02"
+    ]
+  },
+  {
+    "id": "norelo-image-03",
+    "source": "media/source/Norelo/Captura de pantalla 2026-11-17 104953.png",
+    "decision": "withheld",
+    "reason": "Escenario comercial con cifras simuladas; se priorizan mecanismos y controles.",
+    "derivedAssets": []
+  },
+  {
+    "id": "norelo-image-04",
+    "source": "media/source/Norelo/Captura de pantalla 2026-11-17 105001.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "norelo-image-04"
+    ]
+  },
+  {
+    "id": "norelo-image-05",
+    "source": "media/source/Norelo/Captura de pantalla 2026-11-17 105009.png",
+    "decision": "withheld",
+    "reason": "Calculadora de ingresos ilustrativos; evitar confundir estimaciones con resultados reales.",
+    "derivedAssets": []
+  },
+  {
+    "id": "norelo-image-06",
+    "source": "media/source/Norelo/Captura de pantalla 2026-11-17 105045.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "norelo-image-06"
+    ]
+  },
+  {
+    "id": "roster-image-01",
+    "source": "media/source/Roster/020d1aa0-9cc1-4af9-88f9-3c78b42e1f38.png",
+    "decision": "withheld",
+    "reason": "Visual conceptual de concurrencia; el código revisado ejecuta una unidad de trabajo y no prueba ese dashboard.",
+    "derivedAssets": []
+  },
+  {
+    "id": "roster-image-02",
+    "source": "media/source/Roster/Interfaz Roster en PowerShell.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "roster-image-02"
+    ]
+  },
+  {
+    "id": "sicap-image-01",
+    "source": "media/source/sicap/Captura de pantalla 2026-11-17 083507.png",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "sicap-image-01"
+    ]
+  },
+  {
+    "id": "sicap-image-02",
+    "source": "media/source/sicap/Captura de pantalla 2026-11-17 083739.png",
+    "decision": "approved-derived-only",
+    "reason": "Recortado a encabezado e indicadores agregados; sin datos personales.",
+    "derivedAssets": [
+      "sicap-image-02-crop"
+    ]
+  },
+  {
+    "id": "sicap-image-03",
+    "source": "media/source/sicap/Captura de pantalla 2026-11-17 084153.png",
+    "decision": "approved-derived-only",
+    "reason": "Nombre del usuario difuminado con scripts/anonymize-sicap.mjs.",
+    "derivedAssets": [
+      "sicap-image-03-anon"
+    ]
+  },
+  {
+    "id": "sicap-image-04",
+    "source": "media/source/sicap/Captura de pantalla 2026-11-17 084211.png",
+    "decision": "approved-derived-only",
+    "reason": "Nombre del usuario difuminado con scripts/anonymize-sicap.mjs.",
+    "derivedAssets": [
+      "sicap-image-04-anon"
+    ]
+  },
+  {
+    "id": "sicap-video-01",
+    "source": "media/source/sicap/WhatsApp Video 2026-11-17 at 08.51.00.mp4",
+    "decision": "withheld",
+    "reason": "Pantallas de entrenamiento con identidad visible y menor calidad; se elige video de hardware.",
+    "derivedAssets": []
+  },
+  {
+    "id": "sicap-video-02",
+    "source": "media/source/sicap/WhatsApp Video 2026-11-17 at 08.51.10.mp4",
+    "decision": "approved-derived-only",
+    "reason": "Revisado visualmente. Publicar únicamente las derivaciones seleccionadas, con el recorte temporal indicado en media/selections.json.",
+    "derivedAssets": [
+      "sicap-video-02-t3.4",
+      "sicap-video-02"
+    ]
+  },
+  {
+    "id": "sicap-video-03",
+    "source": "media/source/sicap/WhatsApp Video 2026-11-17 at 08.54.31.mp4",
+    "decision": "approved-derived-only",
+    "reason": "Publicación pedida por el autor (17/11/2026). Muestra participantes identificables; el consentimiento queda a cargo del autor. Sin audio.",
+    "derivedAssets": [
+      "sicap-video-03-t16.2",
+      "sicap-video-03"
+    ]
+  }
+]

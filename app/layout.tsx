@@ -1,100 +1,99 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Nav } from "@/components/layout/nav";
+import { PageBackdrop } from "@/components/layout/page-backdrop";
+import { Providers } from "@/components/layout/providers";
+import { SkipToContent } from "@/components/layout/skip-to-content";
+import { baseMetadata } from "@/lib/metadata";
+import type { Metadata, Viewport } from "next";
+import { Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import type { ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// Mona Sans: one variable family for display and reading. Self-hosted as an
+// instance of the Google variable font trimmed to what the site uses (wght
+// 400–700, wdth 100–112.5, Latin + Spanish): 53 KB instead of 98 KB, so it no
+// longer delays the LCP image on mobile. Rebuild it with fontTools if the
+// design needs other weights or widths.
+const monaSans = localFont({
+  src: "./fonts/mona-sans-var.woff2",
+  variable: "--font-mona",
+  weight: "400 700",
+  declarations: [{ prop: "font-stretch", value: "100% 112.5%" }],
+  display: "swap",
+  adjustFontFallback: "Arial",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  // Mono only sets small labels: no need to compete with the LCP image.
+  preload: false,
 });
 
-const siteUrl = "https://danturizo.vercel.app";
+export const metadata: Metadata = baseMetadata;
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: "Daniel Turizo | Full Stack Developer & Systems Engineering Student",
-    template: "%s | Daniel Turizo",
-  },
-  description:
-    "Portfolio of Daniel Turizo, Full Stack Developer and Systems Engineering student focused on software architecture, Oracle databases, enterprise applications and modern web development.",
-  keywords: [
-    "Full Stack Developer",
-    "Java Developer",
-    "Oracle Database",
-    "PLSQL",
-    "Software Engineering",
-    "Software Architecture",
-    "Enterprise Systems",
-    "FastAPI",
-    "React",
-    "Next.js",
-    "Colombia",
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
   ],
-  authors: [{ name: "Daniel Turizo", url: siteUrl }],
-  creator: "Daniel Turizo",
-  openGraph: {
-    title: "Daniel Turizo | Full Stack Developer & Systems Engineering Student",
-    description:
-      "Full Stack Developer and Systems Engineering student focused on software architecture, Oracle databases, enterprise applications and modern web development.",
-    url: siteUrl,
-    siteName: "Daniel Turizo Portfolio",
-    type: "website",
-    locale: "en_US",
-    images: [
-      {
-        url: "/img/heroback.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Daniel Turizo Portfolio",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Daniel Turizo | Full Stack Developer & Systems Engineering Student",
-    description:
-      "Full Stack Developer and Systems Engineering student focused on software architecture, Oracle databases, enterprise applications and modern web development.",
-    images: ["/img/heroback.jpg"],
-    creator: "@danturizo",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  verification: {
-    google: "verification_token", // Replace with your Google Search Console verification token
-  },
-  alternates: {
-    canonical: siteUrl,
-  },
-  category: "technology",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
-}>) {
+  children: ReactNode;
+}>): ReactNode {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-        <Analytics />
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={`${monaSans.variable} ${geistMono.variable}`}
+    >
+      <body className="bg-background text-foreground min-h-screen font-sans antialiased">
+        <Providers>
+          <div className="site-frame site-frame--top" aria-hidden="true" />
+          <div className="site-frame site-frame--left" aria-hidden="true" />
+          <div className="site-frame site-frame--right" aria-hidden="true" />
+          <svg
+            className="site-corner site-corner--top-left"
+            width="50"
+            height="50"
+            viewBox="0 0 50 50"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M5.50871e-06 0C-0.00788227 37.3001 8.99616 50.0116 50 50H5.50871e-06V0Z"
+              fill="currentColor"
+            />
+          </svg>
+          <svg
+            className="site-corner site-corner--top-right"
+            width="50"
+            height="50"
+            viewBox="0 0 50 50"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M5.50871e-06 0C-0.00788227 37.3001 8.99616 50.0116 50 50H5.50871e-06V0Z"
+              fill="currentColor"
+            />
+          </svg>
+          <SkipToContent />
+          <PageBackdrop />
+          <Nav />
+          {children}
+        </Providers>
+        {process.env.VERCEL === "1" && <Analytics />}
       </body>
     </html>
   );
