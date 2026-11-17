@@ -1,31 +1,64 @@
 import { ContactCard } from "@/components/contact/contact-card";
-import { Projects } from "@/components/projects/projects";
-import { FadeIn } from "@/components/ui/motion-primitives";
+import { BlurText } from "@/components/motion/blur-text";
+import { Rise } from "@/components/motion/reveal";
+import {
+  ProjectIndex,
+  type IndexItem,
+} from "@/components/projects/project-index";
+import { assetUrl, projectCover } from "@/lib/media";
 import { createMetadata } from "@/lib/metadata";
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { projects } from "@/lib/projects";
 
-export const metadata: Metadata = createMetadata({
+export const metadata = createMetadata({
   title: "Proyectos",
-  description: "Proyectos destacados: arquitectura, backend, biometría, IoT y web.",
+  description:
+    "Siete proyectos de Daniel Turizo: identidad digital, biometría, herramientas para desarrolladores y experiencias web. Explora el producto y la ingeniería detrás.",
   path: "/projects",
 });
 
-export default function ProjectsPage(): ReactNode {
+export default function ProjectsPage() {
+  const items: IndexItem[] = projects.map((project) => {
+    const cover = projectCover(project.slug);
+    return {
+      id: project.id,
+      slug: project.slug,
+      title: project.title,
+      category: project.category,
+      status: project.status,
+      year: project.year,
+      summary: project.summary,
+      theme: project.theme,
+      cover: {
+        src: assetUrl(cover),
+        alt: cover.alt,
+        width: cover.width,
+        height: cover.height,
+      },
+    };
+  });
+
   return (
-    <main id="main-content" className="flex flex-1 flex-col">
-      <section className="mx-auto w-full max-w-275 px-6 pt-44 pb-16 sm:px-10 sm:pt-100 sm:pb-20">
-        <FadeIn className="flex flex-col items-center gap-5 text-center">
-          <h1 className="font-serif text-[2.75rem] font-medium leading-[1.05] tracking-tight text-foreground md:text-[3.25rem] lg:text-[3.75rem]">
-            Mi trabajo
-          </h1>
-          <p className="max-w-[33ch] text-[20px] leading-[1.4] tracking-tight text-foreground/65 sm:text-[22px]">
-            Proyectos académicos, freelance y personales que he liderado o construido.
+    <main id="main-content" className="projects-page">
+      <header className="projects-hero">
+        <p className="eyebrow">Proyectos · {projects.length}</p>
+        <BlurText
+          as="h1"
+          className="display-xl"
+          text={"El código es sólo\nuna parte de la historia."}
+          muted={["una", "parte", "de", "la", "historia"]}
+          immediate
+        />
+        <Rise className="projects-hero-aside" delay={0.5}>
+          <p>
+            Entender un problema, diseñar la solución y construir lo que sigue.
+            Cada proyecto muestra el producto y las decisiones detrás de él.
           </p>
-        </FadeIn>
+        </Rise>
+      </header>
+      <section aria-label="Índice de proyectos" className="projects-index-wrap">
+        <ProjectIndex items={items} />
       </section>
-      <Projects />
-      <ContactCard />
+      <ContactCard animated={false} />
       <div className="h-12 sm:h-16" />
     </main>
   );

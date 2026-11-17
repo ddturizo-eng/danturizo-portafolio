@@ -1,5 +1,19 @@
 # Portfolio Template
 
+## Experiencia de proyectos de Daniel Turizo
+
+El catálogo editorial y los siete casos de estudio viven en `/projects`. Contenido en `lib/projects.ts`, recursos tipados en `lib/media.ts` y manifiestos en `lib/generated/`. Recursos originales privados en `media/source`; derivados locales públicos en `public/projects`.
+
+- [Configurar R2 y reproducir la preparación/subida](docs/R2.md).
+- [Inventario, decisiones editoriales y material retenido](docs/RECURSOS-PROYECTOS.md).
+- [Referencias observadas con website-forensics](docs/REFERENCIAS-PROYECTOS.md).
+- [Crítica independiente y correcciones](docs/CRITICA-PROYECTOS.md).
+- [Pruebas y límites de validación](docs/VALIDACION-PROYECTOS.md).
+
+El sitio funciona con recursos locales cuando falta `R2_PUBLIC_BASE_URL`. Las credenciales de escritura no son necesarias para ejecutar el portafolio. Los datos anteriores de proyectos se conservan en `docs/archive/projects-before.ts.txt` como referencia histórica, fuera del catálogo público actual.
+
+La documentación de la plantilla original se conserva a continuación; la sección de proyectos actual sustituye su rejilla genérica.
+
 A Next.js 16+ personal portfolio template built around a signature WebGL flow shader, a magnetic morphing portrait, Lenis smooth scroll, and a calm black-and-white design system. Designed for individual designers and engineers who want a brand-ready scaffold with a distinctive look on day one.
 
 ## Features

@@ -8,12 +8,12 @@ export const profile = {
   fullName: "Daniel David Turizo Chacón",
   firstName: "Daniel",
   role: "Full Stack Developer",
-  headline: ["Desarrollador", "Full Stack"],
+  headline: ["Tu negocio,", "más productivo."],
   tagline:
-    "Construyo software de punta a punta: interfaces web, APIs, bases de datos y la arquitectura que lo sostiene, de la idea a producción.",
+    "Diseño la experiencia que ven tus clientes y ordeno la operación que hay detrás: menos tareas manuales, procesos claros y software que tu equipo sí quiere usar.",
   location: "Valledupar, Colombia",
-  portrait: "/img/pruebap.jpg",
-  portraitHover: "/img/pruebap.jpg",
+  portrait: "/img/hero-retrato.webp",
+  portraitHover: "/img/hero-retrato.webp",
 } as const;
 
 export const contact = {
@@ -125,120 +125,4 @@ export const stack: StackChip[] = [
   { label: "Docker", slug: "docker", bg: "#2496ED", fg: "#ffffff" },
 ];
 
-export type ProjectLink = { label: string; href: string };
-
-export type Project = {
-  id: string;
-  icon: "scan-face" | "fingerprint" | "heart-pulse" | "package" | "globe" | "bot" | "database";
-  label: string;
-  title: string;
-  description: string;
-  meta: string;
-  tech: string[];
-  image?: string;
-  imageRatio?: number;
-  links?: ProjectLink[];
-};
-
-export const projects: Project[] = [
-  {
-    id: "averyn",
-    icon: "scan-face",
-    label: "Averyn",
-    title: "Plataforma institucional de identidad digital, biometría, OCR e IA.",
-    description:
-      "Lidero la arquitectura modular por dominios (identidad, autenticación, biometría, OCR). El caché con Redis bajó tiempos de respuesta de ~1 s a menos de 300 ms.",
-    meta: "Project Lead · 2026",
-    tech: ["Next.js", "NestJS", "FastAPI", "PostgreSQL", "Redis", "Docker"],
-  },
-  {
-    id: "abis-upc",
-    icon: "fingerprint",
-    label: "ABIS-UPC",
-    title: "Sistema de votación electrónica con verificación biométrica.",
-    description:
-      "Lideré un equipo de 4 y construí ~70 % del sistema: huella con DigitalPersona, OCR de cédulas y Oracle PL/SQL que separa la identidad del voto. Presentado en ExpoSoftware UPC 2026.",
-    meta: "Project Lead · 2026",
-    tech: ["Java", "FastAPI", "C#/.NET", "Oracle", "Docker"],
-    image: "/img/proyectos/abis-upc-port.avif",
-    imageRatio: 1764 / 892,
-    links: [{ label: "Repositorio", href: "https://github.com/ddturizo-eng/abis-upc" }],
-  },
-  {
-    id: "sicap",
-    icon: "heart-pulse",
-    label: "SICAP",
-    title: "Plataforma IoT para entrenamiento en RCP.",
-    description:
-      "Desarrollé más del 60 % de la web: dashboards, métricas de desempeño en tiempo real con Firestore y la propuesta de hardware con ESP32.",
-    meta: "Full Stack Developer · 2025",
-    tech: ["Next.js", "TypeScript", "Firebase", "ESP32"],
-    image: "/img/proyectos/SIERCP-PORT.png",
-    imageRatio: 1913 / 1042,
-    links: [
-      { label: "Demo", href: "https://siercp-web.vercel.app/" },
-      { label: "Repositorio", href: "https://github.com/ddturizo-eng/SIERCP-WEB" },
-    ],
-  },
-  {
-    id: "stockflow",
-    icon: "package",
-    label: "StockFlow",
-    title: "Gestión de inventario y ventas con análisis de demanda por IA.",
-    description:
-      "App de escritorio con facturación, proveedores, reportes y una integración experimental con DeepSeek para analizar la demanda.",
-    meta: "Desktop App · 2026",
-    tech: ["Java", "JavaFX", "DeepSeek"],
-    image: "/img/proyectos/stockflow-port.png",
-    imageRatio: 1919 / 1135,
-    links: [{ label: "Repositorio", href: "https://github.com/ddturizo-eng/Stockflow" }],
-  },
-  {
-    id: "roster",
-    icon: "bot",
-    label: "roster",
-    title: "Orquestación asíncrona de agentes de IA para desarrollo.",
-    description:
-      "Un agente PM convierte specs en tickets de Linear y un agente HR contrata especialistas para cada uno. Spec-driven y respaldado por ADRs.",
-    meta: "Proyecto personal · 2026",
-    tech: ["TypeScript", "Claude Code", "Linear"],
-    links: [{ label: "Repositorio", href: "https://github.com/ddturizo-eng/roster" }],
-  },
-  {
-    id: "persiste",
-    icon: "database",
-    label: "PersisteApp",
-    title: "Plataforma interactiva para aprender a conectar Java con bases de datos.",
-    description:
-      "JDBC, pool de conexiones, consultas parametrizadas, capas, SOLID y GRASP sobre Oracle y PostgreSQL. Hecha para estudiantes de Programación III.",
-    meta: "Proyecto académico · 2026",
-    tech: ["Next.js", "TypeScript", "Java"],
-    links: [
-      { label: "Demo", href: "https://persisteapp.vercel.app" },
-      { label: "Repositorio", href: "https://github.com/ddturizo-eng/PersisteApp" },
-    ],
-  },
-  {
-    id: "hc-efectos",
-    icon: "globe",
-    label: "HC Efectos",
-    title: "Sitio web en producción para un cliente freelance.",
-    description: "Sitio responsivo entregado a cliente, de los requisitos al despliegue.",
-    meta: "Freelance",
-    tech: ["React", "TypeScript"],
-    image: "/img/proyectos/hc-efectos.png",
-    imageRatio: 1896 / 1045,
-  },
-  {
-    id: "ayr-legal",
-    icon: "globe",
-    label: "Portal AYR Legal",
-    title: "Portal web para una firma de abogados e ingenieros.",
-    description: "Sitio responsivo en producción, de los requisitos al despliegue.",
-    meta: "Freelance",
-    tech: ["Next.js", "TypeScript"],
-    image: "/img/proyectos/ayr.jpeg",
-    imageRatio: 1600 / 911,
-    links: [{ label: "Repositorio", href: "https://github.com/ddturizo-eng/portal-ayr-legal" }],
-  },
-];
+// Project editorial content and media are centralized in lib/projects.ts and lib/media.ts.

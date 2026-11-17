@@ -1,8 +1,13 @@
-import type { ReactNode } from "react";
+"use client";
 
-import { ShaderFlow } from "../shaders/shader-flow";
+import type { ReactNode } from "react";
+import { usePathname } from "next/navigation";
+
+import { DeferredFlow as ShaderFlow } from "../shaders/deferred-flow";
 
 export function PageBackdrop(): ReactNode {
+  const pathname = usePathname();
+  if (pathname.startsWith("/projects")) return null;
   return (
     <div
       aria-hidden="true"

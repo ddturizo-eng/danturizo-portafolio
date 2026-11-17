@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import { LayoutGroup, motion } from "motion/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { ContactButton } from "./contact-button";
@@ -10,6 +11,7 @@ import { ContactButton } from "./contact-button";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function ContactCardCtas(): ReactNode {
+  const showProjects = usePathname() !== "/projects";
   return (
     <LayoutGroup>
       <motion.div
@@ -19,21 +21,23 @@ export function ContactCardCtas(): ReactNode {
       >
         <ContactButton />
 
-        <motion.div
-          layout
-          transition={{ layout: { duration: 0.55, ease: EASE } }}
-        >
-          <Link
-            href="/projects"
-            className="border border-foreground/5 focus-ring group inline-flex cursor-pointer items-center gap-2 rounded-xl bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-md/2 transition-colors"
+        {showProjects && (
+          <motion.div
+            layout
+            transition={{ layout: { duration: 0.55, ease: EASE } }}
           >
-            Ver proyectos
-            <ArrowRight
-              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
-              aria-hidden="true"
-            />
-          </Link>
-        </motion.div>
+            <Link
+              href="/projects"
+              className="border-foreground/5 focus-ring group bg-background text-foreground inline-flex cursor-pointer items-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-medium shadow-md/2 transition-colors"
+            >
+              Ver proyectos
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
+            </Link>
+          </motion.div>
+        )}
       </motion.div>
     </LayoutGroup>
   );

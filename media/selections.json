@@ -1,0 +1,209 @@
+[
+  {
+    "id": "abis-upc-image-02",
+    "role": "cover",
+    "name": "gestion-electoral",
+    "title": "Gestión electoral",
+    "alt": "Panel de ABIS-UPC con procesos electorales y su estado.",
+    "privacy": "approved"
+  },
+  {
+    "id": "abis-upc-image-01",
+    "role": "gallery",
+    "name": "enrolamiento",
+    "title": "Enrolamiento biométrico",
+    "alt": "Flujo de captura de huella de ABIS-UPC, sin datos biométricos personales.",
+    "privacy": "approved"
+  },
+  {
+    "id": "averyn-video-01-t9.1",
+    "role": "cover",
+    "name": "identidad",
+    "title": "Una identidad, varios procesos",
+    "alt": "Landing de Averyn: identidad, verificación y automatización institucional.",
+    "privacy": "approved"
+  },
+  {
+    "id": "averyn-video-01-t18.1",
+    "role": "gallery",
+    "name": "biometria",
+    "title": "Verificación e identidad",
+    "alt": "Representaciones explicativas de biometría facial, huella y lectura documental en la landing de Averyn.",
+    "privacy": "approved"
+  },
+  {
+    "id": "averyn-video-01-t30.2",
+    "role": "gallery",
+    "name": "documentos",
+    "title": "Procesamiento documental",
+    "alt": "Ilustración del flujo OCR en la landing de Averyn, con datos de demostración.",
+    "privacy": "approved"
+  },
+  {
+    "id": "averyn-video-01",
+    "role": "demo",
+    "name": "recorrido",
+    "title": "Recorrido de la landing",
+    "alt": "Recorrido silencioso de la landing de Averyn.",
+    "privacy": "approved",
+    "maxDuration": 22,
+    "poster": "averyn-video-01-t9.1"
+  },
+  {
+    "id": "glow-makeup-image-01",
+    "role": "cover",
+    "name": "universo-gloww",
+    "title": "Gloww Makeup",
+    "alt": "Vista conceptual de Gloww Makeup con imagen generada para la marca.",
+    "privacy": "approved"
+  },
+  {
+    "id": "glow-makeup-image-03",
+    "role": "gallery",
+    "name": "editorial",
+    "title": "Dirección editorial",
+    "alt": "Composición editorial de cosméticos con imágenes generadas.",
+    "privacy": "approved"
+  },
+  {
+    "id": "glow-makeup-image-04",
+    "role": "gallery",
+    "name": "movil",
+    "title": "La galería en móvil",
+    "alt": "Captura móvil de la galería conceptual de Gloww Makeup.",
+    "privacy": "approved"
+  },
+  {
+    "id": "hc-efectos-image-01",
+    "role": "cover",
+    "name": "eventos",
+    "title": "HC Efectos",
+    "alt": "Página de HC Efectos: presentación de pirotecnia y efectos para eventos.",
+    "privacy": "approved"
+  },
+  {
+    "id": "hc-efectos-image-02",
+    "role": "gallery",
+    "name": "cotizacion",
+    "title": "De interés a consulta",
+    "alt": "Formulario de cotización de un evento con datos de ejemplo.",
+    "privacy": "approved"
+  },
+  {
+    "id": "hc-efectos-image-03",
+    "role": "gallery",
+    "name": "galeria",
+    "title": "Un catálogo visual de efectos",
+    "alt": "Galería de eventos con categorías y previsualizaciones.",
+    "privacy": "approved"
+  },
+  {
+    "id": "norelo-image-01",
+    "role": "cover",
+    "name": "asistente",
+    "title": "Nerelo",
+    "alt": "Landing de Nerelo con una demostración de atención de negocios desde WhatsApp.",
+    "privacy": "approved"
+  },
+  {
+    "id": "norelo-image-02",
+    "role": "gallery",
+    "name": "inicio",
+    "title": "Una entrada sencilla",
+    "alt": "Explicación visual del inicio en tres pasos del prototipo de Nerelo.",
+    "privacy": "approved"
+  },
+  {
+    "id": "norelo-image-04",
+    "role": "gallery",
+    "name": "control",
+    "title": "La autonomía se elige",
+    "alt": "Niveles de autonomía propuestos en la landing del prototipo.",
+    "privacy": "approved"
+  },
+  {
+    "id": "norelo-image-06",
+    "role": "gallery",
+    "name": "workspace",
+    "title": "El trabajo, a la vista",
+    "alt": "Workspace del prototipo de Nerelo con datos y tareas simulados.",
+    "privacy": "approved"
+  },
+  {
+    "id": "roster-image-02",
+    "role": "cover",
+    "name": "terminal",
+    "title": "Roster CLI",
+    "alt": "Captura suministrada de la ayuda y el estado de Roster en PowerShell.",
+    "privacy": "approved"
+  },
+  {
+    "id": "sicap-image-01",
+    "role": "cover",
+    "name": "capacitacion",
+    "title": "SICAP",
+    "alt": "Página pública de SICAP para capacitación en primeros auxilios y emergencias.",
+    "privacy": "approved"
+  },
+  {
+    "id": "sicap-video-03-t16.2",
+    "role": "poster",
+    "name": "feria-poster",
+    "title": "SICAP en feria",
+    "alt": "Estudiantes practican RCP con el maniquí instrumentado de SICAP y una tableta.",
+    "privacy": "approved"
+  },
+  {
+    "id": "sicap-video-03",
+    "role": "demo",
+    "name": "feria",
+    "title": "SICAP en una feria",
+    "alt": "Demostración pública: visitantes practican compresiones en el maniquí mientras la tableta muestra la sesión en tiempo real.",
+    "privacy": "approved",
+    "maxDuration": 28,
+    "poster": "sicap-video-03-t16.2",
+    "crf": 30
+  },
+  {
+    "id": "sicap-image-02-crop",
+    "role": "gallery",
+    "name": "control-center",
+    "title": "Centro de control multi-institución",
+    "alt": "Panel de superadministración de SICAP con instituciones, usuarios, instructores, cursos y sesiones clínicas.",
+    "privacy": "approved"
+  },
+  {
+    "id": "sicap-image-03-anon",
+    "role": "gallery",
+    "name": "progreso",
+    "title": "Progreso del estudiante",
+    "alt": "Panel del estudiante con nivel, sesiones, puntaje y actividad reciente. Nombre difuminado.",
+    "privacy": "approved"
+  },
+  {
+    "id": "sicap-image-04-anon",
+    "role": "gallery",
+    "name": "historial",
+    "title": "Historial de rendimiento",
+    "alt": "Historial de sesiones de entrenamiento con calidad, profundidad y frecuencia, exportable a PDF y CSV. Nombre difuminado.",
+    "privacy": "approved"
+  },
+  {
+    "id": "sicap-video-02-t3.4",
+    "role": "gallery",
+    "name": "hardware",
+    "title": "Del sensor a la interfaz",
+    "alt": "Demostración física del prototipo de entrenamiento con maniquí y electrónica.",
+    "privacy": "approved"
+  },
+  {
+    "id": "sicap-video-02",
+    "role": "demo",
+    "name": "demostracion-hardware",
+    "title": "Prototipo en funcionamiento",
+    "alt": "Video silencioso del prototipo físico de entrenamiento en RCP.",
+    "privacy": "approved",
+    "maxDuration": 8,
+    "poster": "sicap-video-02-t3.4"
+  }
+]
