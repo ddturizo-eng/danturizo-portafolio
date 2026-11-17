@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { useRef, useSyncExternalStore, type ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 
 import { DottedPattern } from "@/components/ui/dotted-pattern";
 
@@ -80,16 +80,6 @@ function PolaroidCard({
 }
 
 export function PolaroidStrip(): ReactNode {
-  const mounted = useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false
-  );
-
-  if (!mounted) {
-    return <div aria-hidden="true" className="h-[clamp(8rem,15vw,12rem)] w-full" />;
-  }
-
   return (
     <div className="flex flex-wrap w-full items-start justify-center gap-1 px-4 sm:gap-1.5 sm:px-8">
       {PHOTOS.map((photo, i) => (

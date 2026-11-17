@@ -151,7 +151,7 @@ export function ProjectVideo({
               ref={element}
               key={source}
               src={near ? src : undefined}
-              poster={poster?.src}
+              poster={near ? poster?.src : undefined}
               muted
               loop
               playsInline

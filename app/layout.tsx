@@ -4,24 +4,32 @@ import { Providers } from "@/components/layout/providers";
 import { SkipToContent } from "@/components/layout/skip-to-content";
 import { baseMetadata } from "@/lib/metadata";
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Mona_Sans } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
-// Mona Sans: one variable family for display and reading. The width axis
-// lets headlines run slightly expanded without loading a second family.
-const monaSans = Mona_Sans({
+// Mona Sans: one variable family for display and reading. Self-hosted as an
+// instance of the Google variable font trimmed to what the site uses (wght
+// 400–700, wdth 100–112.5, Latin + Spanish): 53 KB instead of 98 KB, so it no
+// longer delays the LCP image on mobile. Rebuild it with fontTools if the
+// design needs other weights or widths.
+const monaSans = localFont({
+  src: "./fonts/mona-sans-var.woff2",
   variable: "--font-mona",
-  subsets: ["latin"],
-  axes: ["wdth"],
+  weight: "400 700",
+  declarations: [{ prop: "font-stretch", value: "100% 112.5%" }],
   display: "swap",
+  adjustFontFallback: "Arial",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
+  // Mono only sets small labels: no need to compete with the LCP image.
+  preload: false,
 });
 
 export const metadata: Metadata = baseMetadata;

@@ -3,19 +3,18 @@
 import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 
-import { DeferredFlow as ShaderFlow } from "../shaders/deferred-flow";
-
+/**
+ * Hero backdrop. The flowing light used to be a WebGL shader rendering every
+ * frame (the main cause of a 8 s Total Blocking Time on mobile). It is now a
+ * still of that shader (scripts/capture-shaders.mjs) with a slow compositor-only
+ * drift, so the look stays and the main thread stays free.
+ */
 export function PageBackdrop(): ReactNode {
   const pathname = usePathname();
   if (pathname.startsWith("/projects")) return null;
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-225 overflow-hidden"
-    >
-      <div className="absolute inset-0 opacity-50 md:opacity-100">
-        <ShaderFlow brightness={3} iterations={10} flowSpeed={[0, 0.1]} />
-      </div>
+    <div aria-hidden="true" className="page-backdrop">
+      <div className="page-backdrop-layer" />
     </div>
   );
 }

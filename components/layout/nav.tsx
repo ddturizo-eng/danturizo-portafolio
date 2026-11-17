@@ -1,7 +1,6 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -112,7 +111,6 @@ function NavThemeToggle(): ReactNode {
 }
 
 export function Nav(): ReactNode {
-  const reducedMotion = useReducedMotion();
   const pathname = usePathname();
   const listRef = useRef<HTMLUListElement>(null);
   const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
@@ -157,16 +155,20 @@ export function Nav(): ReactNode {
       <div className="bg-background border-foreground/8 flex items-center gap-1 rounded-full border p-1.5 shadow-sm">
         <ul ref={listRef} className="relative flex items-center gap-1">
           {pillRect && (
-            <motion.span
+            // CSS transition instead of a spring: keeps motion out of the
+            // bundle every page loads. Reduced motion is handled globally.
+            <span
               aria-hidden="true"
-              initial={false}
-              animate={{ x: pillRect.x, width: pillRect.width }}
-              transition={
-                hasMeasured && !reducedMotion
-                  ? { type: "spring", stiffness: 380, damping: 32 }
-                  : { duration: 0 }
-              }
-              style={{ left: 0, top: 0, bottom: 0 }}
+              style={{
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: pillRect.width,
+                transform: `translateX(${pillRect.x}px)`,
+                transition: hasMeasured
+                  ? "transform 450ms var(--ease-out), width 450ms var(--ease-out)"
+                  : "none",
+              }}
               className="bg-foreground/5 ring-foreground/8 absolute rounded-full ring-1"
             />
           )}

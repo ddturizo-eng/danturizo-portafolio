@@ -41,23 +41,63 @@
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--foreground) 55%, transparent);
+  color: color-mix(in srgb, var(--foreground) 62%, transparent);
 }
 .blur-line {
   display: block;
 }
 .blur-word {
   display: inline-block;
-  will-change: transform, filter, opacity;
 }
 .blur-word.is-muted {
-  color: color-mix(in srgb, var(--foreground) 42%, transparent);
+  color: color-mix(in srgb, var(--foreground) 62%, transparent);
+}
+
+/* Reveals: paused on their hidden first frame until .is-shown. */
+@keyframes blur-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(0.35em);
+  }
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+@keyframes media-in {
+  from {
+    clip-path: inset(10% 6% 10% 6% round 28px);
+    transform: scale(1.04);
+  }
+  to {
+    clip-path: inset(0% 0% 0% 0% round 20px);
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .blur-text .blur-word {
+    animation: blur-in 0.9s var(--ease-out) var(--d, 0s) both paused;
+  }
+  .reveal-rise {
+    animation: rise-in 0.8s var(--ease-out) var(--enter-delay, 0s) both paused;
+  }
+  .reveal-media {
+    animation: media-in 1.1s var(--ease-out) var(--enter-delay, 0s) both paused;
+  }
+  .blur-text.is-shown .blur-word,
+  .reveal-rise.is-shown,
+  .reveal-media.is-shown {
+    animation-play-state: running;
+  }
 }
 .chapter-number {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.06em;
-  color: color-mix(in srgb, var(--foreground) 45%, transparent);
+  color: color-mix(in srgb, var(--foreground) 62%, transparent);
 }
 
 .projects-page,
@@ -162,7 +202,7 @@
 }
 .collection-intro em {
   font-style: normal;
-  color: color-mix(in srgb, var(--foreground) 42%, transparent);
+  color: color-mix(in srgb, var(--foreground) 62%, transparent);
 }
 .collection-intro p,
 .collection-footer p {
@@ -180,6 +220,10 @@
   gap: 72px 32px;
 }
 .work {
+  /* Off-screen cards skip layout/paint, and their lazy images wait until the
+     card is near, so they don't share bandwidth with the hero on mobile. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 640px;
   min-width: 0;
 }
 .work--lead,
@@ -329,7 +373,7 @@
   font-size: 11px;
   letter-spacing: 0.03em;
   line-height: 1.7;
-  color: color-mix(in srgb, var(--foreground) 58%, transparent);
+  color: color-mix(in srgb, var(--foreground) 62%, transparent);
   text-align: right;
   padding-top: 3px;
   max-width: 220px;
@@ -399,7 +443,7 @@
 .index-number {
   font-family: var(--font-mono);
   font-size: 13px;
-  color: color-mix(in srgb, var(--foreground) 45%, transparent);
+  color: color-mix(in srgb, var(--foreground) 62%, transparent);
   align-self: start;
   padding-top: 0.9em;
 }
@@ -426,7 +470,7 @@
   letter-spacing: 0.03em;
   line-height: 1.5;
   text-align: right;
-  color: color-mix(in srgb, var(--foreground) 58%, transparent);
+  color: color-mix(in srgb, var(--foreground) 62%, transparent);
 }
 .index-meta span + span {
   color: color-mix(in srgb, var(--foreground) 85%, transparent);
@@ -518,7 +562,7 @@
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--foreground) 50%, transparent);
+  color: color-mix(in srgb, var(--foreground) 62%, transparent);
 }
 .case-facts dd {
   margin-top: 6px;
@@ -864,7 +908,7 @@
   font-weight: 400;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--foreground) 55%, transparent);
+  color: color-mix(in srgb, var(--foreground) 62%, transparent);
 }
 .screen-description,
 .gallery-context {
@@ -1246,4 +1290,17 @@
     display: block;
     margin: 6px 0 0;
   }
+}
+
+/* Below-the-fold case sections skip rendering until near, and their lazy
+   images stop competing with the cover (the LCP) on slow mobile links.
+   Dialogs and fullscreen video live in the top layer, so containment is safe. */
+.case-screen,
+.case-capabilities,
+.case-gallery-section,
+.case-decisions,
+.case-outcome,
+.case-next {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
 }

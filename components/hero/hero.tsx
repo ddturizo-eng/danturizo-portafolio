@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import { HeroCtas } from "./hero-ctas";
 import { FadeIn, ScaleUnblur } from "@/components/ui/motion-primitives";
-import { PortraitMorph } from "./portrait-morph";
+import Image from "next/image";
 import { profile } from "@/lib/content";
 
 export function Hero(): ReactNode {
@@ -40,10 +40,15 @@ export function Hero(): ReactNode {
           <ScaleUnblur className="flex justify-stretch md:justify-end">
             <div className="relative aspect-square w-full md:max-w-105 overflow-hidden rounded-4xl border border-foreground/8 bg-background p-1.5 shadow-sm">
               <div className="relative h-full w-full overflow-hidden rounded-[1.6rem]">
-                <PortraitMorph
-                  srcA={profile.portrait}
-                  srcB={profile.portraitHover}
+                <Image
+                  src={profile.portrait}
                   alt={`Retrato de ${profile.name}`}
+                  fill
+                  preload
+                  fetchPriority="high"
+                  sizes="(min-width: 768px) 420px, 100vw"
+                  className="object-cover grayscale select-none"
+                  draggable={false}
                 />
               </div>
             </div>

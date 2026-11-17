@@ -1,10 +1,7 @@
 "use client";
 
-import { motion, useInView } from "motion/react";
-import { Fragment, useRef, type ElementType, type ReactNode } from "react";
-import { useReducedMotion } from "@/lib/motion";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { Fragment, type CSSProperties, type ElementType, type ReactNode } from "react";
+import { useShown } from "./use-in-view-class";
 
 type BlurTextProps = {
   /** Text to reveal. Use "\n" to force a line break. */
@@ -15,15 +12,16 @@ type BlurTextProps = {
   /** Seconds between words. */
   stagger?: number;
   delay?: number;
-  /** Reveal on mount instead of when scrolled into view. */
+  /** Reveal on first paint instead of when scrolled into view. */
   immediate?: boolean;
   /** Words (exact match) rendered in the muted accent tone. */
   muted?: string[];
 };
 
 /**
- * Word-by-word reveal: each word rises 0.35em while its blur clears.
- * Screen readers get the full sentence once; the animated words are hidden.
+ * Word-by-word reveal: each word rises 0.35em while its blur clears. The
+ * animation is CSS (.blur-text in projects.css), so immediate headlines paint
+ * before hydration. Screen readers get the full sentence once.
  */
 export function BlurText({
   text,
@@ -35,15 +33,16 @@ export function BlurText({
   immediate = false,
   muted = [],
 }: BlurTextProps): ReactNode {
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -12% 0px" });
-  const reduced = useReducedMotion();
-  const show = immediate || inView;
+  const [ref, shown] = useShown<HTMLElement>(immediate);
   const lines = text.split("\n");
   let index = 0;
 
   return (
-    <Tag ref={ref} id={id} className={className}>
+    <Tag
+      ref={ref}
+      id={id}
+      className={`blur-text${shown ? " is-shown" : ""} ${className ?? ""}`}
+    >
       <span className="sr-only">{text.replace(/\n/g, " ")}</span>
       <span aria-hidden="true">
         {lines.map((line, lineIndex) => (
@@ -55,26 +54,14 @@ export function BlurText({
               );
               return (
                 <Fragment key={`${lineIndex}-${wordIndex}`}>
-                  <motion.span
+                  <span
                     className={`blur-word${isMuted ? " is-muted" : ""}`}
-                    initial={
-                      reduced
-                        ? false
-                        : { opacity: 0, filter: "blur(10px)", y: "0.35em" }
+                    style={
+                      { "--d": `${delay + i * stagger}s` } as CSSProperties
                     }
-                    animate={
-                      show || reduced
-                        ? { opacity: 1, filter: "blur(0px)", y: "0em" }
-                        : { opacity: 0, filter: "blur(10px)", y: "0.35em" }
-                    }
-                    transition={{
-                      duration: 0.9,
-                      ease: EASE,
-                      delay: delay + i * stagger,
-                    }}
                   >
                     {word}
-                  </motion.span>
+                  </span>
                   {wordIndex < words.length - 1 ? " " : null}
                 </Fragment>
               );

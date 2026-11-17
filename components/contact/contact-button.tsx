@@ -45,7 +45,7 @@ export function ContactButton(): ReactNode {
       onFocus={() => setOpen(true)}
       onBlur={() => setOpen(false)}
       aria-label={
-        copied ? "Email copiado" : open ? `Copiar ${EMAIL}` : "Ver email"
+        copied ? "Email copiado" : open ? `Copiar ${EMAIL}` : "Contáctame"
       }
       transition={{ layout: { duration: 0.55, ease: EASE } }}
       style={{ borderRadius: 12 }}

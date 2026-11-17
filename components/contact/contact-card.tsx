@@ -4,7 +4,6 @@ import { Fragment, type ReactNode } from "react";
 
 import { ContactCardCtas } from "./contact-card-ctas";
 import { FadeIn } from "@/components/ui/motion-primitives";
-import { DeferredFlow as ShaderFlow } from "../shaders/deferred-flow";
 import { contact, profile } from "@/lib/content";
 
 const CARD_FADE_MASK =
@@ -22,14 +21,12 @@ export function ContactCard({
             {animated && (
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 opacity-45 dark:opacity-25"
+                className="contact-backdrop pointer-events-none absolute inset-0 opacity-45 dark:opacity-25"
                 style={{
                   WebkitMaskImage: CARD_FADE_MASK,
                   maskImage: CARD_FADE_MASK,
                 }}
-              >
-                <ShaderFlow scale={3} brightness={3} />
-              </div>
+              />
             )}
 
             <div className="relative grid gap-8 p-6 sm:gap-10 sm:p-7 md:grid-cols-[1.2fr_1fr] md:items-stretch md:gap-6 md:p-6">

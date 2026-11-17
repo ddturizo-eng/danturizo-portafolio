@@ -14,20 +14,50 @@ const browser = await chromium.launch({
 });
 const summaries = [];
 const out = process.argv[3] || "reports/performance";
+// BASE_URL picks the production server to audit (run `npm run start` first).
+const base = (process.env.BASE_URL || "http://localhost:3000").replace(/\/$/, "");
+const routes = [
+  ["home", "/"],
+  ["projects", "/projects"],
+  ["averyn", "/projects/averyn"],
+  ["sicap", "/projects/sicap"],
+  ["about", "/about"],
+].filter(([name]) => !process.env.ROUTES || process.env.ROUTES.split(",").includes(name));
 await fs.mkdir(out, { recursive: false });
 try {
-  for (const [name, route] of [
-    ["projects", "/projects"],
-    ["averyn", "/projects/averyn"],
-  ]) {
-    const result = await lighthouse(`http://localhost:3000${route}`, {
-      port: 9223,
-      output: ["json", "html"],
-      logLevel: "error",
-      onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
-    });
-    await fs.writeFile(`${out}/${name}.json`, result.report[0]);
-    await fs.writeFile(`${out}/${name}.html`, result.report[1]);
+  // FORM_FACTORS=mobile,desktop (default both). Desktop uses Lighthouse's
+  // desktop preset: no CPU throttling, 1350x940 screen.
+  const factors = (process.env.FORM_FACTORS || "mobile,desktop").split(",");
+  const desktop = {
+    formFactor: "desktop",
+    screenEmulation: { mobile: false, width: 1350, height: 940, deviceScaleFactor: 1, disabled: false },
+    throttling: { rttMs: 40, throughputKbps: 10240, cpuSlowdownMultiplier: 1, requestLatencyMs: 0, downloadThroughputKbps: 0, uploadThroughputKbps: 0 },
+  };
+  for (const factor of factors)
+  for (const [name, route] of routes) {
+    // RUNS=n audits each page n times and keeps the median performance run,
+    // as Lighthouse recommends for noisy local machines.
+    const runs = [];
+    for (let i = 0; i < Number(process.env.RUNS || 1); i++) {
+      runs.push(
+        await lighthouse(
+          `${base}${route}`,
+          {
+            port: 9223,
+            output: ["json", "html"],
+            logLevel: "error",
+            onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
+          },
+          factor === "desktop"
+            ? { extends: "lighthouse:default", settings: desktop }
+            : undefined
+        )
+      );
+    }
+    runs.sort((a, b) => a.lhr.categories.performance.score - b.lhr.categories.performance.score);
+    const result = runs[Math.floor(runs.length / 2)];
+    await fs.writeFile(`${out}/${name}-${factor}.json`, result.report[0]);
+    await fs.writeFile(`${out}/${name}-${factor}.html`, result.report[1]);
     summaries.push({
       route,
       formFactor: result.lhr.configSettings.formFactor,

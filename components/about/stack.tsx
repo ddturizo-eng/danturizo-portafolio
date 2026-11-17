@@ -25,11 +25,29 @@ export function Stack(): ReactNode {
   const measureRef = useRef<HTMLDivElement | null>(null);
   const chipRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [resetKey, setResetKey] = useState(0);
+  // Physics starts only once the box is near the viewport and pauses while
+  // it is off screen, so it never competes with page load.
+  const [started, setStarted] = useState(false);
+  const visibleRef = useRef(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visibleRef.current = entry?.isIntersecting ?? false;
+        if (visibleRef.current) setStarted(true);
+      },
+      { rootMargin: "200px 0px" }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
     const measure = measureRef.current;
-    if (!container || !measure) return;
+    if (!started || !container || !measure) return;
 
     let cancelled = false;
     let cleanup: (() => void) | undefined;
@@ -141,6 +159,11 @@ export function Stack(): ReactNode {
 
       let raf = 0;
       const tick = (): void => {
+        runner.enabled = visibleRef.current;
+        if (!visibleRef.current) {
+          raf = requestAnimationFrame(tick);
+          return;
+        }
         for (let i = 0; i < states.length; i++) {
           const s = states[i];
           const el = chipRefs.current[i];
@@ -187,14 +210,14 @@ export function Stack(): ReactNode {
       cancelled = true;
       cleanup?.();
     };
-  }, [resetKey]);
+  }, [resetKey, started]);
 
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-3">
-        <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
+        <h2 className="text-foreground text-[15px] font-semibold tracking-tight">
           Stack
-        </h3>
+        </h2>
       </div>
 
       <div className="border-foreground/5 bg-foreground/2 dark:bg-foreground/5 relative h-40 overflow-hidden rounded-4xl border sm:h-64">

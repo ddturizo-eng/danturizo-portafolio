@@ -119,6 +119,72 @@ html[data-theme-anim="1"]::view-transition-new(root) {
   }
 }
 
+/* Hero backdrop: still of the flow shader, drifting on the compositor. */
+.page-backdrop {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -10;
+  height: 900px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.page-backdrop-layer {
+  position: absolute;
+  inset: -4%;
+  background: url("/img/backdrop-light.avif") center top / cover no-repeat;
+  opacity: 0.5;
+}
+.dark .page-backdrop-layer {
+  background-image: url("/img/backdrop-dark.avif");
+}
+.contact-backdrop {
+  background: url("/img/backdrop-light.avif") center / 300% auto no-repeat;
+}
+.dark .contact-backdrop {
+  background-image: url("/img/backdrop-dark.avif");
+}
+@media (min-width: 768px) {
+  .page-backdrop-layer {
+    opacity: 1;
+  }
+}
+
+/* Entrance animations run in CSS so text paints before hydration (LCP). */
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@keyframes enter-unblur {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+    filter: blur(14px);
+  }
+}
+@keyframes backdrop-drift {
+  from {
+    transform: translate3d(-1.5%, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(1.5%, 1%, 0) scale(1.04);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .enter-up {
+    animation: enter-up 0.8s var(--ease-out) both;
+    animation-delay: var(--enter-delay, 0s);
+  }
+  .enter-unblur {
+    animation: enter-unblur 1s var(--ease-out) both;
+    animation-delay: var(--enter-delay, 0s);
+  }
+  .page-backdrop-layer {
+    animation: backdrop-drift 18s ease-in-out infinite alternate;
+  }
+}
+
 .site-frame {
   display: block;
   position: absolute;
